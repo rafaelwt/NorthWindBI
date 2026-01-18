@@ -21,7 +21,7 @@ MSc. Juan Marcelo Claure Salinas
 ### Integrantes
 - Daniel Abasto
 - Edmundo Triguero
-- Carolina Vaca Diez
+- Carolina Jaksic Vaca Diez
 - Rodolfo Rafael Wayar Tateishi
 
 ---
