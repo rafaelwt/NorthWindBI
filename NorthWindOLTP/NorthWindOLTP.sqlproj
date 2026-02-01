@@ -79,4 +79,28 @@
     <Build Include="Schema\Tables\Territories.sql" />
     <Build Include="Schema\Tables\EmployeeTerritories.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- Stored Procedures - CDC -->
+    <Build Include="Schema\Programmability\Stored Procedures\GetDatabaseRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetCustomerChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetEmployeeChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetProductChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetShipperChangesByRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetOrdersChangesByRowVersion.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Post-Deployment Scripts -->
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+    <None Include="Scripts\clean.data.sql" />
+    <None Include="Scripts\Region.data.sql" />
+    <None Include="Scripts\Categories.data.sql" />
+    <None Include="Scripts\Suppliers.data.sql" />
+    <None Include="Scripts\Shippers.data.sql" />
+    <None Include="Scripts\Customers.data.sql" />
+    <None Include="Scripts\Employees.data.sql" />
+    <None Include="Scripts\Territories.data.sql" />
+    <None Include="Scripts\Products.data.sql" />
+    <None Include="Scripts\Orders.data.sql" />
+    <None Include="Scripts\OrderDetails.data.sql" />
+  </ItemGroup>
 </Project>
