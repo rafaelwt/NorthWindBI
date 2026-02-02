@@ -36,7 +36,7 @@ Proyecto de Business Intelligence basado en la base de datos NorthWind
 - [x] Estructura del proyecto Data Warehouse (NorthWindDW)
 - [x] Esquema Estrella implementado (5 dimensiones + 1 tabla de hechos)
 - [x] Stored Procedures para ETL (MERGE y CDC)
-- [ ] ETL con SSIS (NorthWindETL)
+- [x] ETL con SSIS (NorthWindETL)
 - [ ] Modelo OLAP con SSAS (NorthWindOLAP)
 
 ### Tecnologías
