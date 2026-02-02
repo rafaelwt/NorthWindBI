@@ -5,7 +5,7 @@ AS
 BEGIN
 	SELECT
 		o.OrderID AS OrderNo,
-		ROW_NUMBER() OVER (PARTITION BY o.OrderID ORDER BY od.ProductID) AS LineItemNo,
+		CAST(ROW_NUMBER() OVER (PARTITION BY o.OrderID ORDER BY od.ProductID) AS INT) AS LineItemNo,
 		o.CustomerID,
 		o.EmployeeID,
 		od.ProductID,
