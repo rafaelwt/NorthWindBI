@@ -22,5 +22,6 @@ CREATE TABLE [dbo].[Employees]
 );
 GO
 
-ALTER TABLE [dbo].[Employees] ADD CONSTRAINT FK_Employees_Employees FOREIGN KEY([ReportsTo]) REFERENCES [dbo].[Employees] ([EmployeeID])
-GO
+-- NO es necesario, provocaba conflictos al cargar los datos desde la carpeta Scripts
+--ALTER TABLE [dbo].[Employees] ADD CONSTRAINT FK_Employees_Employees FOREIGN KEY([ReportsTo]) REFERENCES [dbo].[Employees] ([EmployeeID])
+--GO

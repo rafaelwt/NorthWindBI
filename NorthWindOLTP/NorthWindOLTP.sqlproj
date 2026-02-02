@@ -79,4 +79,21 @@
     <Build Include="Schema\Tables\Territories.sql" />
     <Build Include="Schema\Tables\EmployeeTerritories.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\Categories.data.sql" />
+    <None Include="Scripts\Customers.data.sql" />
+    <None Include="Scripts\Employees.data.sql" />
+    <None Include="Scripts\EmployeeTerritories.data.sql" />
+    <None Include="Scripts\OrderDetails.data.sql" />
+    <None Include="Scripts\Orders.data.sql" />
+    <None Include="Scripts\Products.data.sql" />
+    <None Include="Scripts\Region.data.sql" />
+    <None Include="Scripts\Shippers.data.sql" />
+    <None Include="Scripts\Suppliers.data.sql" />
+    <None Include="Scripts\Territories.data.sql" />
+    <None Include="Scripts\Clean.data.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
 </Project>
