@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Orders]
 	[ShipRegion]     [nvarchar](15) NULL,
 	[ShipPostalCode] [nvarchar](10) NULL,
 	[ShipCountry]    [nvarchar](15) NULL,
-	[rowversion]     [timestamp]    NOT NULL
+	[RowVer]   [rowversion]    NOT NULL
 );
 GO
 

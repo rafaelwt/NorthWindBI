@@ -1,6 +1,8 @@
 CREATE PROCEDURE [dbo].[GetEmployeeChangesByRowVersion]
+(
 	@startRowVersion BIGINT,
 	@endRowVersion BIGINT
+)
 AS
 BEGIN
 	SELECT
@@ -13,7 +15,6 @@ BEGIN
 		HireDate,
 		ReportsTo
 	FROM [dbo].[Employees]
-	WHERE CAST([rowversion] AS BIGINT) > @startRowVersion
-	  AND CAST([rowversion] AS BIGINT) <= @endRowVersion;
+	WHERE (CAST([RowVer] AS BIGINT) > @startRowVersion) AND (CAST([RowVer] AS BIGINT) <= @endRowVersion);
 END;
 GO

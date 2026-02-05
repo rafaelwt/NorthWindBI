@@ -12,5 +12,5 @@ CREATE TABLE [dbo].[Suppliers]
 	[Phone]        [nvarchar](24) NULL,
 	[Fax]          [nvarchar](24) NULL,
 	[HomePage]     [ntext]        NULL,
-	[rowversion]   [timestamp]    NOT NULL
+	[RowVer]   [rowversion]    NOT NULL
 );

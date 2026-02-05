@@ -2,7 +2,7 @@ CREATE TABLE [dbo].[EmployeeTerritories]
 (
 	[EmployeeID]  [int]          NOT NULL,
 	[TerritoryID] [nvarchar](20) NOT NULL,
-	[rowversion]  [timestamp]    NOT NULL,
+	[RowVer]   [rowversion]    NOT NULL,
 	CONSTRAINT PK_EmployeeTerritories PRIMARY KEY ([EmployeeID], [TerritoryID])
 );
 GO

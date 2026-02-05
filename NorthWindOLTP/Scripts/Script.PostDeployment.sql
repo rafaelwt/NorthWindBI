@@ -1,23 +1,24 @@
-/*
-Post-Deployment Script Template
+﻿/*
+Plantilla de script posterior a la implementación							
 --------------------------------------------------------------------------------------
- This file contains SQL statements that will be appended to the build script.
- Use SQLCMD syntax to include a file in the post-deployment script.
- Example:      :r .\myfile.sql
+ Este archivo contiene instrucciones de SQL que se anexarán al script de compilación.		
+ Use la sintaxis de SQLCMD para incluir un archivo en el script posterior a la implementación.			
+ Ejemplo:      :r .\miArchivo.sql								
+ Use la sintaxis de SQLCMD para hacer referencia a una variable en el script posterior a la implementación.		
+ Ejemplo:      :setvar TableName miTabla							
+               SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
 
--- Limpiar tablas existentes (en orden inverso de dependencias)
-:r .\clean.data.sql
-
--- Cargar datos (en orden de dependencias)
-:r .\Region.data.sql
+:r .\Clean.data.sql
 :r .\Categories.data.sql
 :r .\Suppliers.data.sql
 :r .\Shippers.data.sql
+:r .\Region.data.sql
 :r .\Customers.data.sql
-:r .\Employees.data.sql
-:r .\Territories.data.sql
 :r .\Products.data.sql
+:r .\Territories.data.sql
+:r .\Employees.data.sql
+:r .\EmployeeTerritories.data.sql
 :r .\Orders.data.sql
 :r .\OrderDetails.data.sql

@@ -1,6 +1,8 @@
 CREATE PROCEDURE [dbo].[GetOrdersChangesByRowVersion]
+(
 	@startRowVersion BIGINT,
 	@endRowVersion BIGINT
+)
 AS
 BEGIN
 	SELECT
@@ -17,7 +19,7 @@ BEGIN
 		NULL AS Profit
 	FROM [dbo].[Orders] o
 	INNER JOIN [dbo].[OrderDetails] od ON o.OrderID = od.OrderID
-	WHERE CAST(o.[rowversion] AS BIGINT) > @startRowVersion
-	  AND CAST(o.[rowversion] AS BIGINT) <= @endRowVersion;
+	WHERE ((CAST(o.[RowVer] AS BIGINT) > @startRowVersion) AND (CAST(o.[RowVer] AS BIGINT) <= @endRowVersion))
+	   OR ((CAST(od.[RowVer] AS BIGINT) > @startRowVersion) AND (CAST(od.[RowVer] AS BIGINT) <= @endRowVersion));
 END;
 GO

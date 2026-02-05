@@ -1,6 +1,8 @@
 CREATE PROCEDURE [dbo].[GetCustomerChangesByRowVersion]
+(
 	@startRowVersion BIGINT,
 	@endRowVersion BIGINT
+)
 AS
 BEGIN
 	SELECT
@@ -8,7 +10,7 @@ BEGIN
 		CompanyName,
 		ContactName,
 		ContactTitle,
-		Address,
+		[Address],
 		City,
 		Region,
 		PostalCode,
@@ -16,7 +18,6 @@ BEGIN
 		Phone,
 		Fax
 	FROM [dbo].[Customers]
-	WHERE CAST([rowversion] AS BIGINT) > @startRowVersion
-	  AND CAST([rowversion] AS BIGINT) <= @endRowVersion;
+	WHERE (CAST([RowVer] AS BIGINT) > @startRowVersion) AND (CAST([RowVer] AS BIGINT) <= @endRowVersion);
 END;
 GO

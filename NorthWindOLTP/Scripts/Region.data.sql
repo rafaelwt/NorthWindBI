@@ -1,6 +1,7 @@
-INSERT INTO dbo.Region (RegionID, RegionDescription) VALUES
-(1, N'Eastern'),
-(2, N'Western'),
-(3, N'Northern'),
-(4, N'Southern');
-GO
+﻿PRINT 'Carga inicial de la Tabla Region';
+SET NOCOUNT ON;
+
+INSERT [dbo].[Region] ([RegionID], [RegionDescription]) VALUES (1, N'Eastern                                           ')
+INSERT [dbo].[Region] ([RegionID], [RegionDescription]) VALUES (2, N'Western                                           ')
+INSERT [dbo].[Region] ([RegionID], [RegionDescription]) VALUES (3, N'Northern                                          ')
+INSERT [dbo].[Region] ([RegionID], [RegionDescription]) VALUES (4, N'Southern                                          ')

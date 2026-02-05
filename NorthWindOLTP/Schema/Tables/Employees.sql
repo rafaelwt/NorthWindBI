@@ -18,9 +18,10 @@ CREATE TABLE [dbo].[Employees]
 	[Notes]           [ntext]        NULL,
 	[ReportsTo]       [int]          NULL,
 	[PhotoPath]       [nvarchar](255) NULL,
-	[rowversion]      [timestamp]    NOT NULL
+	[RowVer]   [rowversion]    NOT NULL
 );
 GO
 
-ALTER TABLE [dbo].[Employees] ADD CONSTRAINT FK_Employees_Employees FOREIGN KEY([ReportsTo]) REFERENCES [dbo].[Employees] ([EmployeeID])
-GO
+-- Esta por demas, causa errores de carga
+--ALTER TABLE [dbo].[Employees] ADD CONSTRAINT FK_Employees_Employees FOREIGN KEY([ReportsTo]) REFERENCES [dbo].[Employees] ([EmployeeID])
+--GO
