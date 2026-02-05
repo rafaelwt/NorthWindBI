@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="DimSalesPerson"
   DTS:PackageType="5"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{A772A7B5-2506-4D78-9182-32776B419366}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{E3B3D701-8E19-46CD-8006-AAADDE82EFBE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=INTEL-RWT;Initial Catalog=NorthWindOLTP;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{0F3C3F87-B484-4840-9F92-B6AE1CD8E4D7}INTEL-RWT.NorthWindOLTP;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LTSDABASTO;Initial Catalog=NorthWindOLTP;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{0F3C3F87-B484-4840-9F92-B6AE1CD8E4D7}INTEL-RWT.NorthWindOLTP;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -37,7 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=INTEL-RWT;Initial Catalog=NorthWindDW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{6B0B2B83-F940-4D2E-962F-B5A12AD14E0B}INTEL-RWT.NorthWindDW;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LTSDABASTO;Initial Catalog=NorthWindDW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{6B0B2B83-F940-4D2E-962F-B5A12AD14E0B}INTEL-RWT.NorthWindDW;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -76,7 +76,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{6B0B2B83-F940-4D2E-962F-B5A12AD14E0B}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE staging.salesperson" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE staging.salesperson;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -96,7 +96,7 @@
           SQLTask:SqlStatementSource="EXEC dbo.GetDatabaseRowVersion"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
-            SQLTask:ResultName="CurrentRowVersion"
+            SQLTask:ResultName="DBTS"
             SQLTask:DtsVariableName="User::dbts" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
@@ -976,7 +976,7 @@ where [refTable].[EmployeeID] = ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{6B0B2B83-F940-4D2E-962F-B5A12AD14E0B}"
-          SQLTask:SqlStatementSource="EXEC dbo.DW_MergeDimSalesPerson" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="EXEC dbo.DW_MergeDimSalesPerson;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1047,17 +1047,21 @@ where [refTable].[EmployeeID] = ?</property>
       DTS:To="Package\Update PackageConfig" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
 <Objects
   Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Clean-up Staging"
+          TopLeft="376,202" />
         <NodeLayout
           Size="201,42"
           Id="Package\Get Database RowVersion"
@@ -1066,6 +1070,18 @@ where [refTable].[EmployeeID] = ?</property>
           Size="173,42"
           Id="Package\Get LastRowVersion"
           TopLeft="374,134" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Load SalesPerson"
+          TopLeft="378,292" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Sync Staging"
+          TopLeft="386,369" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Update PackageConfig"
+          TopLeft="364,451" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="460,97">
@@ -1088,10 +1104,6 @@ where [refTable].[EmployeeID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\Clean-up Staging"
-          TopLeft="376,202" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="458,176">
@@ -1114,10 +1126,6 @@ where [refTable].[EmployeeID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="161,42"
-          Id="Package\Load SalesPerson"
-          TopLeft="378,292" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="457,244">
@@ -1140,10 +1148,6 @@ where [refTable].[EmployeeID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="140,42"
-          Id="Package\Sync Staging"
-          TopLeft="386,369" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="457.25,334">
@@ -1166,10 +1170,6 @@ where [refTable].[EmployeeID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="185,42"
-          Id="Package\Update PackageConfig"
-          TopLeft="364,451" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="456.25,411">
@@ -1201,13 +1201,21 @@ where [refTable].[EmployeeID] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="155,42"
-          Id="Package\Load SalesPerson\Get SalesPerson"
-          TopLeft="442,69" />
+          Size="124,42"
+          Id="Package\Load SalesPerson\Load Dim"
+          TopLeft="615,223" />
         <NodeLayout
           Size="113,42"
           Id="Package\Load SalesPerson\Lookup"
           TopLeft="457,145" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Load SalesPerson\Get SalesPerson"
+          TopLeft="442,69" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Load SalesPerson\Update Stage"
+          TopLeft="314,220" />
         <EdgeLayout
           Id="Package\Load SalesPerson.Paths[OLE DB Source Output]"
           TopLeft="516.5,111">
@@ -1230,10 +1238,6 @@ where [refTable].[EmployeeID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="124,42"
-          Id="Package\Load SalesPerson\Load Dim"
-          TopLeft="615,223" />
         <EdgeLayout
           Id="Package\Load SalesPerson.Paths[Lookup No Match Output]"
           TopLeft="513.5,187">
@@ -1270,10 +1274,6 @@ where [refTable].[EmployeeID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="143,42"
-          Id="Package\Load SalesPerson\Update Stage"
-          TopLeft="314,220" />
         <EdgeLayout
           Id="Package\Load SalesPerson.Paths[Lookup Match Output]"
           TopLeft="496,187">
@@ -1314,10 +1314,15 @@ where [refTable].[EmployeeID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load SalesPerson\Get SalesPerson">
+    design-time-name="Package\Load SalesPerson\Load Dim">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -1345,15 +1350,10 @@ where [refTable].[EmployeeID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load SalesPerson\Load Dim">
+    design-time-name="Package\Load SalesPerson\Get SalesPerson">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

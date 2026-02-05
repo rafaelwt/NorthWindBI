@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="FactOrders"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{B832D11A-FD9E-410E-A395-B73CCA1DB814}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{75D93818-8946-4011-95A0-214BF753F220}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=INTEL-RWT;Initial Catalog=NorthWindOLTP;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-FactOrders-{11530DEE-4B00-4C31-9231-E619F4A3B0AF}INTEL-RWT.NorthWindOLTP;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LTSDABASTO;Initial Catalog=NorthWindOLTP;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-FactOrders-{11530DEE-4B00-4C31-9231-E619F4A3B0AF}INTEL-RWT.NorthWindOLTP;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -37,7 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=INTEL-RWT;Initial Catalog=NorthWindDW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-FactOrders-{C9778BE9-7CF5-43F7-A942-0AE35AC48FB8}INTEL-RWT.NorthWindDW;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=LTSDABASTO;Initial Catalog=NorthWindDW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-FactOrders-{C9778BE9-7CF5-43F7-A942-0AE35AC48FB8}INTEL-RWT.NorthWindDW;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -93,10 +93,10 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{11530DEE-4B00-4C31-9231-E619F4A3B0AF}"
-          SQLTask:SqlStatementSource="EXEC dbo.GetDatabaseRowVersion"
+          SQLTask:SqlStatementSource="EXEC dbo.GetDatabaseRowVersion;"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
-            SQLTask:ResultName="CurrentRowVersion"
+            SQLTask:ResultName="DBTS"
             SQLTask:DtsVariableName="User::dbts" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
@@ -1697,7 +1697,7 @@ where [refTable].[ShipperID] = ?</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{C9778BE9-7CF5-43F7-A942-0AE35AC48FB8}"
-          SQLTask:SqlStatementSource="EXEC dbo.DW_MergeFactOrders" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="EXEC dbo.DW_MergeFactOrders;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1768,17 +1768,21 @@ where [refTable].[ShipperID] = ?</property>
       DTS:To="Package\Update PackageConfig" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
 <Objects
   Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Clean-up Staging"
+          TopLeft="382,191" />
         <NodeLayout
           Size="201,42"
           Id="Package\Get Database RowVersion"
@@ -1787,6 +1791,18 @@ where [refTable].[ShipperID] = ?</property>
           Size="173,42"
           Id="Package\Get LastRowVersion"
           TopLeft="378,111" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Load Orders"
+          TopLeft="403,276" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Sync Staging"
+          TopLeft="395,356" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Update PackageConfig"
+          TopLeft="383,435" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="456.5,84">
@@ -1821,10 +1837,6 @@ where [refTable].[ShipperID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\Clean-up Staging"
-          TopLeft="382,191" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="463,153">
@@ -1847,10 +1859,6 @@ where [refTable].[ShipperID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136,42"
-          Id="Package\Load Orders"
-          TopLeft="403,276" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="461.5,233">
@@ -1885,10 +1893,6 @@ where [refTable].[ShipperID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="140,42"
-          Id="Package\Sync Staging"
-          TopLeft="395,356" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="468,318">
@@ -1911,10 +1915,6 @@ where [refTable].[ShipperID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="185,42"
-          Id="Package\Update PackageConfig"
-          TopLeft="383,435" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="465,398">
@@ -1958,51 +1958,37 @@ where [refTable].[ShipperID] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="130,42"
-          Id="Package\Load Orders\Get Orders"
-          TopLeft="393,35" />
-        <NodeLayout
-          Size="161,42"
-          Id="Package\Load Orders\Lookup Customer"
-          TopLeft="319,112" />
-        <EdgeLayout
-          Id="Package\Load Orders.Paths[OLE DB Source Output]"
-          TopLeft="458,77">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-58.5,35"
-              Start="0,0"
-              End="-58.5,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.5"
-                    Point2="0,17.5"
-                    Point3="-4,17.5" />
-                  <mssgle:LineSegment
-                    End="-54.5,17.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-54.5,17.5"
-                    Point2="-58.5,17.5"
-                    Point3="-58.5,21.5" />
-                  <mssgle:LineSegment
-                    End="-58.5,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="164,42"
+          Id="Package\Load Orders\Load Fact Orders"
+          TopLeft="687,459" />
         <NodeLayout
           Size="173,42"
           Id="Package\Load Orders\Lookup SalesPerson"
           TopLeft="322,203" />
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Load Orders\Lookup Customer"
+          TopLeft="319,112" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Load Orders\Lookup Product"
+          TopLeft="349,281" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Load Orders\Load Stage"
+          TopLeft="304,453" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Load Orders\Get Orders"
+          TopLeft="393,35" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Load Orders\Lookup ShippingAgent"
+          TopLeft="344,364" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Load Orders\Lookup Fact"
+          TopLeft="651,382" />
         <EdgeLayout
           Id="Package\Load Orders.Paths[Lookup Match Output]"
           TopLeft="399.5,154">
@@ -2039,90 +2025,112 @@ where [refTable].[ShipperID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="152,42"
-          Id="Package\Load Orders\Lookup Product"
-          TopLeft="349,281" />
         <EdgeLayout
-          Id="Package\Load Orders.Paths[Lookup Match Output1]"
-          TopLeft="408.5,245">
+          Id="Package\Load Orders.Paths[OLE DB Source Output]"
+          TopLeft="458,77">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="16.5,36"
+              EndConnector="-58.5,35"
               Start="0,0"
-              End="16.5,28.5">
+              End="-58.5,27.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14" />
+                    End="0,13.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14"
-                    Point2="0,18"
-                    Point3="4,18" />
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="-4,17.5" />
                   <mssgle:LineSegment
-                    End="12.5,18" />
+                    End="-54.5,17.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="12.5,18"
-                    Point2="16.5,18"
-                    Point3="16.5,22" />
+                    Point1="-54.5,17.5"
+                    Point2="-58.5,17.5"
+                    Point3="-58.5,21.5" />
                   <mssgle:LineSegment
-                    End="16.5,28.5" />
+                    End="-58.5,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders.Paths[Lookup No Match Output]"
+          TopLeft="742.333333333333,424">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.6666666666666,35"
+              Start="0,0"
+              End="26.6666666666666,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.2389758179232" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.2389758179232"
+                    Point2="0,14.2389758179232"
+                    Point3="4,14.2389758179232" />
+                  <mssgle:LineSegment
+                    End="22.6666666666666,14.2389758179232" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.6666666666666,14.2389758179232"
+                    Point2="26.6666666666666,14.2389758179232"
+                    Point3="26.6666666666666,18.2389758179232" />
+                  <mssgle:LineSegment
+                    End="26.6666666666666,27.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-39.94138671875,23,96.3827734375,11.609375"
+              BoundingBox="-42.4730533854167,19.2389758179232,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="184,42"
-          Id="Package\Load Orders\Lookup ShippingAgent"
-          TopLeft="344,364" />
         <EdgeLayout
-          Id="Package\Load Orders.Paths[Lookup Match Output2]"
-          TopLeft="425,323">
+          Id="Package\Load Orders.Paths[Lookup Match Output4]"
+          TopLeft="698.666666666667,424">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11,41"
+              EndConnector="-328.666666666667,29"
               Start="0,0"
-              End="11,33.5">
+              End="-328.666666666667,21.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.5" />
+                    End="0,7.79800853485063" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.5"
-                    Point2="0,20.5"
-                    Point3="4,20.5" />
+                    Point1="0,7.79800853485063"
+                    Point2="0,11.7980085348506"
+                    Point3="-4,11.7980085348506" />
                   <mssgle:LineSegment
-                    End="7,20.5" />
+                    End="-324.666666666667,11.7980085348506" />
                   <mssgle:CubicBezierSegment
-                    Point1="7,20.5"
-                    Point2="11,20.5"
-                    Point3="11,24.5" />
+                    Point1="-324.666666666667,11.7980085348506"
+                    Point2="-328.666666666667,11.7980085348506"
+                    Point3="-328.666666666667,15.7980085348506" />
                   <mssgle:LineSegment
-                    End="11,33.5" />
+                    End="-328.666666666667,21.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-42.69138671875,25.5,96.3827734375,11.609375"
+              BoundingBox="-212.524720052083,16.7980085348506,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136,42"
-          Id="Package\Load Orders\Lookup Fact"
-          TopLeft="651,382" />
         <EdgeLayout
           Id="Package\Load Orders.Paths[Lookup Match Output3]"
           TopLeft="528,385">
@@ -2159,83 +2167,75 @@ where [refTable].[ShipperID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="132,42"
-          Id="Package\Load Orders\Load Stage"
-          TopLeft="304,453" />
         <EdgeLayout
-          Id="Package\Load Orders.Paths[Lookup Match Output4]"
-          TopLeft="719,424">
+          Id="Package\Load Orders.Paths[Lookup Match Output2]"
+          TopLeft="425,323">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-349,29"
+              EndConnector="11,41"
               Start="0,0"
-              End="-349,21.5">
+              End="11,33.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.5" />
+                    End="0,16.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.5"
-                    Point2="0,14.5"
-                    Point3="-4,14.5" />
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
                   <mssgle:LineSegment
-                    End="-345,14.5" />
+                    End="7,20.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-345,14.5"
-                    Point2="-349,14.5"
-                    Point3="-349,18.5" />
+                    Point1="7,20.5"
+                    Point2="11,20.5"
+                    Point3="11,24.5" />
                   <mssgle:LineSegment
-                    End="-349,21.5" />
+                    End="11,33.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-222.69138671875,19.5,96.3827734375,11.609375"
+              BoundingBox="-42.69138671875,25.5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\Load Orders\Load Fact Orders"
-          TopLeft="687,460" />
         <EdgeLayout
-          Id="Package\Load Orders.Paths[Lookup No Match Output]"
-          TopLeft="740.333333333333,424">
+          Id="Package\Load Orders.Paths[Lookup Match Output1]"
+          TopLeft="408.5,245">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="26.1666666666666,36"
+              EndConnector="16.5,36"
               Start="0,0"
-              End="26.1666666666666,28.5">
+              End="16.5,28.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.6511627906977" />
+                    End="0,14" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.6511627906977"
-                    Point2="0,14.6511627906977"
-                    Point3="4,14.6511627906977" />
+                    Point1="0,14"
+                    Point2="0,18"
+                    Point3="4,18" />
                   <mssgle:LineSegment
-                    End="22.1666666666666,14.6511627906977" />
+                    End="12.5,18" />
                   <mssgle:CubicBezierSegment
-                    Point1="22.1666666666666,14.6511627906977"
-                    Point2="26.1666666666666,14.6511627906977"
-                    Point3="26.1666666666666,18.6511627906977" />
+                    Point1="12.5,18"
+                    Point2="16.5,18"
+                    Point3="16.5,22" />
                   <mssgle:LineSegment
-                    End="26.1666666666666,28.5" />
+                    End="16.5,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-42.7230533854167,19.6511627906977,111.6127734375,11.609375"
+              BoundingBox="-39.94138671875,23,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2243,8 +2243,36 @@ where [refTable].[ShipperID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Get Orders">
+    design-time-name="Package\Load Orders\Load Fact Orders">
     <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders\Lookup SalesPerson">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimSalesPerson]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -2274,35 +2302,12 @@ where [refTable].[ShipperID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Lookup SalesPerson">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimSalesPerson]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load Orders\Lookup Product">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2312,53 +2317,7 @@ where [refTable].[ShipperID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Lookup ShippingAgent">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimShippingAgent]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Lookup Fact">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[FactOrders]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2379,15 +2338,56 @@ where [refTable].[ShipperID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Load Fact Orders">
+    design-time-name="Package\Load Orders\Get Orders">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders\Lookup ShippingAgent">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimShippingAgent]</Value>
+      </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q2:string">Table</Value>
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders\Lookup Fact">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactOrders]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
