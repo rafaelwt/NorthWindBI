@@ -8,8 +8,9 @@ CREATE TABLE [staging].[orders]
 	[OrderNo]           INT      NULL,
 	[LineItemNo]        INT      NULL,
 	[Quantity]          SMALLINT NULL,
-	[Revenue]           MONEY    NULL,
-	[Cost]              MONEY    NULL,
-	[Profit]            MONEY    NULL
+	[UnitPrice]         MONEY    NULL,
+	[Discount]          REAL     NULL,
+	[Revenue]           MONEY    NULL
+
 );
 GO

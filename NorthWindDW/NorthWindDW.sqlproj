@@ -101,4 +101,7 @@
     <None Include="Scripts\PackageConfig.data.sql" />
     <None Include="Scripts\DimDate.data.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\PatchDimDate.data.sql" />
+  </ItemGroup>
 </Project>

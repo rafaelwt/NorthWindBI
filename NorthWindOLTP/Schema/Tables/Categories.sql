@@ -4,5 +4,5 @@ CREATE TABLE [dbo].[Categories]
 	[CategoryName] [nvarchar](15) NOT NULL,
 	[Description]  [ntext]        NULL,
 	[Picture]      [image]        NULL,
-	[rowversion]   [timestamp]    NOT NULL
+	[RowVer]   [rowversion]    NOT NULL
 );

@@ -10,7 +10,7 @@ Plantilla de script posterior a la implementación
 --------------------------------------------------------------------------------------
 */
 
-:r .\clean.data.sql
+:r .\Clean.data.sql
 :r .\Categories.data.sql
 :r .\Suppliers.data.sql
 :r .\Shippers.data.sql

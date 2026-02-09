@@ -11,5 +11,5 @@ CREATE TABLE [dbo].[Customers]
 	[Country]      [nvarchar](15) NULL,
 	[Phone]        [nvarchar](24) NULL,
 	[Fax]          [nvarchar](24) NULL,
-	[rowversion]   [timestamp]    NOT NULL
+	[RowVer]   [rowversion]    NOT NULL
 );

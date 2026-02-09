@@ -10,16 +10,16 @@ BEGIN
 	BEGIN
 		INSERT INTO [dbo].[DimDate]
 		(
-			DateKey,
-			FullDate,
-			Year,
-			Quarter,
-			Month,
-			Day,
-			DayNumberOfWeek,
-			DayNameOfWeek,
-			MonthName,
-			WeekNumberOfYear
+			[DateKey],
+			[FullDate],
+			[Year],
+			[Quarter],
+			[Month],
+			[Day],
+			[DayNumberOfWeek],
+			[DayNameOfWeek],
+			[MonthName],
+			[WeekNumberOfYear]
 		)
 		VALUES
 		(

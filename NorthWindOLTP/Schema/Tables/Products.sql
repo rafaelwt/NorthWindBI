@@ -10,7 +10,7 @@ CREATE TABLE [dbo].[Products]
 	[UnitsOnOrder]    [smallint]     NULL CONSTRAINT DF_Products_UnitsOnOrder DEFAULT (0),
 	[ReorderLevel]    [smallint]     NULL CONSTRAINT DF_Products_ReorderLevel DEFAULT (0),
 	[Discontinued]    [bit]          NOT NULL CONSTRAINT DF_Products_Discontinued DEFAULT (0),
-	[rowversion]      [timestamp]    NOT NULL
+	[RowVer]   [rowversion]    NOT NULL
 );
 GO
 

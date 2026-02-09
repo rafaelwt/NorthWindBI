@@ -5,7 +5,7 @@ CREATE TABLE [dbo].[OrderDetails]
 	[UnitPrice]  [money]    NOT NULL CONSTRAINT DF_OrderDetails_UnitPrice DEFAULT (0),
 	[Quantity]   [smallint] NOT NULL CONSTRAINT DF_OrderDetails_Quantity DEFAULT (1),
 	[Discount]   [real]     NOT NULL CONSTRAINT DF_OrderDetails_Discount DEFAULT (0),
-	[rowversion] [timestamp] NOT NULL,
+	[RowVer]   [rowversion]    NOT NULL,
 	CONSTRAINT PK_OrderDetails PRIMARY KEY ([OrderID], [ProductID])
 );
 GO

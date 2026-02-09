@@ -3,7 +3,7 @@ CREATE TABLE [dbo].[Territories]
 	[TerritoryID]          [nvarchar](20) NOT NULL CONSTRAINT PK_Territories PRIMARY KEY,
 	[TerritoryDescription] [nchar](50)    NOT NULL,
 	[RegionID]             [int]          NOT NULL,
-	[rowversion]           [timestamp]    NOT NULL
+	[RowVer]   [rowversion]    NOT NULL
 );
 GO
 
