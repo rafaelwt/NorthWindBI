@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="FactOrders"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{75D93818-8946-4011-95A0-214BF753F220}">
+  DTS:VersionBuild="57"
+  DTS:VersionGUID="{F795D88A-C21B-4421-BA18-EB2BAD571826}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -115,7 +115,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{C9778BE9-7CF5-43F7-A942-0AE35AC48FB8}"
-          SQLTask:SqlStatementSource="EXEC dbo.GetLastPackageRowVersion @tableName = 'Orders'"
+          SQLTask:SqlStatementSource="EXEC dbo.GetLastPackageRowVersion @tableName = 'Orders';"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="LastRowVersion"
@@ -135,6 +135,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <pipeline
+          autoAdjustBufferSize="true"
           version="1">
           <components>
             <component
@@ -272,31 +273,31 @@
                       name="Quantity"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
+                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Discount]"
+                      dataType="r4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
                       refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Revenue]"
                       dataType="cy"
-                      errorOrTruncationOperation="Conversion"
+                      errorOrTruncationOperation="Conversión"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[Revenue]"
                       lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Revenue]"
                       name="Revenue"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Cost]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[Cost]"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Cost]"
-                      name="Cost"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Profit]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[Profit]"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Profit]"
-                      name="Profit"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -339,13 +340,13 @@
                       dataType="cy"
                       name="Revenue" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[Cost]"
-                      dataType="i4"
-                      name="Cost" />
+                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="cy"
+                      name="UnitPrice" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[Profit]"
-                      dataType="i4"
-                      name="Profit" />
+                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      dataType="r4"
+                      name="Discount" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -395,20 +396,15 @@
                       lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Quantity]"
                       name="Quantity" />
                     <outputColumn
-                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Revenue]"
+                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
                       dataType="cy"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Revenue]"
-                      name="Revenue" />
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
                     <outputColumn
-                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Cost]"
-                      dataType="i4"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Cost]"
-                      name="Cost" />
-                    <outputColumn
-                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Profit]"
-                      dataType="i4"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Profit]"
-                      name="Profit" />
+                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      dataType="r4"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      name="Discount" />
                     <outputColumn
                       refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -421,6 +417,11 @@
                       lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Revenue]"
+                      dataType="cy"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Error Output].Columns[Revenue]"
+                      name="Revenue" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -529,18 +530,6 @@
                       externalMetadataColumnId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[Revenue]"
                       lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Revenue]" />
                     <inputColumn
-                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].Columns[Cost]"
-                      cachedDataType="i4"
-                      cachedName="Cost"
-                      externalMetadataColumnId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[Cost]"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Cost]" />
-                    <inputColumn
-                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].Columns[Profit]"
-                      cachedDataType="i4"
-                      cachedName="Profit"
-                      externalMetadataColumnId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Profit]" />
-                    <inputColumn
                       refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
                       cachedDataType="i4"
                       cachedName="CustomerKey"
@@ -564,6 +553,18 @@
                       cachedName="ShippingAgentKey"
                       externalMetadataColumnId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[ShippingAgentKey]"
                       lineageId="Package\Load Orders\Lookup ShippingAgent.Outputs[Lookup Match Output].Columns[ShippingAgentKey]" />
+                    <inputColumn
+                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].Columns[Discount]"
+                      cachedDataType="r4"
+                      cachedName="Discount"
+                      externalMetadataColumnId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Discount]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -604,13 +605,13 @@
                       dataType="cy"
                       name="Revenue" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[Cost]"
+                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
                       dataType="cy"
-                      name="Cost" />
+                      name="UnitPrice" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
-                      dataType="cy"
-                      name="Profit" />
+                      refId="Package\Load Orders\Load Fact Orders.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      dataType="r4"
+                      name="Discount" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -742,18 +743,6 @@
                       externalMetadataColumnId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[Revenue]"
                       lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Revenue]" />
                     <inputColumn
-                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].Columns[Cost]"
-                      cachedDataType="i4"
-                      cachedName="Cost"
-                      externalMetadataColumnId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[Cost]"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Cost]" />
-                    <inputColumn
-                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].Columns[Profit]"
-                      cachedDataType="i4"
-                      cachedName="Profit"
-                      externalMetadataColumnId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
-                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Profit]" />
-                    <inputColumn
                       refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].Columns[CustomerKey]"
                       cachedDataType="i4"
                       cachedName="CustomerKey"
@@ -777,6 +766,18 @@
                       cachedName="ShippingAgentKey"
                       externalMetadataColumnId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[ShippingAgentKey]"
                       lineageId="Package\Load Orders\Lookup ShippingAgent.Outputs[Lookup Match Output].Columns[ShippingAgentKey]" />
+                    <inputColumn
+                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="cy"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].Columns[Discount]"
+                      cachedDataType="r4"
+                      cachedName="Discount"
+                      externalMetadataColumnId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      lineageId="Package\Load Orders\Get Orders.Outputs[OLE DB Source Output].Columns[Discount]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -817,13 +818,13 @@
                       dataType="cy"
                       name="Revenue" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[Cost]"
+                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
                       dataType="cy"
-                      name="Cost" />
+                      name="UnitPrice" />
                     <externalMetadataColumn
-                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[Profit]"
-                      dataType="cy"
-                      name="Profit" />
+                      refId="Package\Load Orders\Load Stage.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      dataType="r4"
+                      name="Discount" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1063,7 +1064,7 @@ where [refTable].[OrderNo] = ? and [refTable].[LineItemNo] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SalesPersonKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShippingAgentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TimeKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderNo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LineItemNo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Quantity" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Revenue" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Cost" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Profit" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SalesPersonKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProductKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShippingAgentKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TimeKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="OrderNo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LineItemNo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Quantity" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UnitPrice" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Discount" dataType="DT_R4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Revenue" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -1960,141 +1961,31 @@ where [refTable].[ShipperID] = ?</property>
         <NodeLayout
           Size="164,42"
           Id="Package\Load Orders\Load Fact Orders"
-          TopLeft="687,459" />
+          TopLeft="691,460" />
         <NodeLayout
           Size="173,42"
           Id="Package\Load Orders\Lookup SalesPerson"
           TopLeft="322,203" />
         <NodeLayout
-          Size="161,42"
-          Id="Package\Load Orders\Lookup Customer"
-          TopLeft="319,112" />
-        <NodeLayout
-          Size="152,42"
-          Id="Package\Load Orders\Lookup Product"
-          TopLeft="349,281" />
+          Size="139,42"
+          Id="Package\Load Orders\Lookup Fact"
+          TopLeft="651,382" />
         <NodeLayout
           Size="132,42"
           Id="Package\Load Orders\Load Stage"
           TopLeft="304,453" />
         <NodeLayout
-          Size="130,42"
-          Id="Package\Load Orders\Get Orders"
-          TopLeft="393,35" />
+          Size="161,42"
+          Id="Package\Load Orders\Lookup Customer"
+          TopLeft="319,112" />
         <NodeLayout
           Size="184,42"
           Id="Package\Load Orders\Lookup ShippingAgent"
           TopLeft="344,364" />
         <NodeLayout
-          Size="139,42"
-          Id="Package\Load Orders\Lookup Fact"
-          TopLeft="651,382" />
-        <EdgeLayout
-          Id="Package\Load Orders.Paths[Lookup Match Output]"
-          TopLeft="399.5,154">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="9,49"
-              Start="0,0"
-              End="9,41.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.5"
-                    Point2="0,24.5"
-                    Point3="4,24.5" />
-                  <mssgle:LineSegment
-                    End="5,24.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="5,24.5"
-                    Point2="9,24.5"
-                    Point3="9,28.5" />
-                  <mssgle:LineSegment
-                    End="9,41.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-43.69138671875,29.5,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders.Paths[OLE DB Source Output]"
-          TopLeft="458,77">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-58.5,35"
-              Start="0,0"
-              End="-58.5,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,13.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,13.5"
-                    Point2="0,17.5"
-                    Point3="-4,17.5" />
-                  <mssgle:LineSegment
-                    End="-54.5,17.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-54.5,17.5"
-                    Point2="-58.5,17.5"
-                    Point3="-58.5,21.5" />
-                  <mssgle:LineSegment
-                    End="-58.5,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Orders.Paths[Lookup No Match Output]"
-          TopLeft="742.333333333333,424">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="26.6666666666666,35"
-              Start="0,0"
-              End="26.6666666666666,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.2389758179232" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.2389758179232"
-                    Point2="0,14.2389758179232"
-                    Point3="4,14.2389758179232" />
-                  <mssgle:LineSegment
-                    End="22.6666666666666,14.2389758179232" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22.6666666666666,14.2389758179232"
-                    Point2="26.6666666666666,14.2389758179232"
-                    Point3="26.6666666666666,18.2389758179232" />
-                  <mssgle:LineSegment
-                    End="26.6666666666666,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-42.4730533854167,19.2389758179232,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="152,42"
+          Id="Package\Load Orders\Lookup Product"
+          TopLeft="349,281" />
         <EdgeLayout
           Id="Package\Load Orders.Paths[Lookup Match Output4]"
           TopLeft="698.666666666667,424">
@@ -2127,7 +2018,7 @@ where [refTable].[ShipperID] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-212.524720052083,16.7980085348506,96.3827734375,11.609375"
+              BoundingBox="-212.524720052084,16.7980085348506,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2239,6 +2130,116 @@ where [refTable].[ShipperID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders.Paths[Lookup Match Output]"
+          TopLeft="399.5,154">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,49"
+              Start="0,0"
+              End="9,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="5,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,24.5"
+                    Point2="9,24.5"
+                    Point3="9,28.5" />
+                  <mssgle:LineSegment
+                    End="9,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-43.69138671875,29.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders.Paths[OLE DB Source Output]"
+          TopLeft="458,77">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-58.5,35"
+              Start="0,0"
+              End="-58.5,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="-4,17.5" />
+                  <mssgle:LineSegment
+                    End="-54.5,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-54.5,17.5"
+                    Point2="-58.5,17.5"
+                    Point3="-58.5,21.5" />
+                  <mssgle:LineSegment
+                    End="-58.5,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Orders.Paths[Lookup No Match Output]"
+          TopLeft="742.333333333333,424">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.6666666666666,36"
+              Start="0,0"
+              End="30.6666666666666,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.6458036984353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.6458036984353"
+                    Point2="0,14.6458036984353"
+                    Point3="4,14.6458036984353" />
+                  <mssgle:LineSegment
+                    End="26.6666666666666,14.6458036984353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.6666666666666,14.6458036984353"
+                    Point2="30.6666666666666,14.6458036984353"
+                    Point3="30.6666666666666,18.6458036984353" />
+                  <mssgle:LineSegment
+                    End="30.6666666666666,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-40.4730533854167,19.6458036984353,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Load Orders\Get Orders"
+          TopLeft="393,35" />
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2261,7 +2262,7 @@ where [refTable].[ShipperID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2271,10 +2272,46 @@ where [refTable].[ShipperID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders\Lookup Fact">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[FactOrders]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
           type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders\Load Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -2296,50 +2333,6 @@ where [refTable].[ShipperID] = ?</property>
         <Value
           type="q4:int">0</Value>
       </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Lookup Product">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimProduct]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Load Stage">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Get Orders">
-    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -2369,22 +2362,30 @@ where [refTable].[ShipperID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Orders\Lookup Fact">
+    design-time-name="Package\Load Orders\Get Orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Orders\Lookup Product">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[FactOrders]</Value>
+          type="q3:string">[dbo].[DimProduct]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

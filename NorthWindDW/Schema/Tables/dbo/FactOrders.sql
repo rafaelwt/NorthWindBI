@@ -13,9 +13,9 @@ CREATE TABLE [dbo].[FactOrders]
 
 	-- Measures
 	[Quantity]          SMALLINT NOT NULL,
-	[Revenue]           MONEY    NOT NULL,
-	[Cost]              MONEY    NULL,
-	[Profit]            MONEY    NULL,
+	[UnitPrice]			MONEY NOT NULL,
+	[Discount]			REAL NOT NULL,
+	[Revenue]           MONEY NOT NULL,
 
 	-- Primary Key
 	CONSTRAINT PK_FactOrders PRIMARY KEY ([OrderNo], [LineItemNo])

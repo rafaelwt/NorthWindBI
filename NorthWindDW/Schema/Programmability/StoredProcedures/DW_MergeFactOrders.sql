@@ -8,10 +8,10 @@ BEGIN
 		f.ShippingAgentKey = s.ShippingAgentKey,
 		f.TimeKey = s.TimeKey,
 		f.Quantity = s.Quantity,
-		f.Revenue = s.Revenue,
-		f.Cost = s.Cost,
-		f.Profit = s.Profit
+		f.UnitPrice = s.UnitPrice,
+		f.Discount = s.Discount,
+		f.Revenue = s.Revenue
 	FROM [dbo].[FactOrders] f
-	INNER JOIN [staging].[orders] s ON f.OrderNo = s.OrderNo AND f.LineItemNo = s.LineItemNo;
+	INNER JOIN [staging].[orders] s ON (f.OrderNo = s.OrderNo) AND (f.LineItemNo = s.LineItemNo);
 END;
 GO

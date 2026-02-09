@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">INTEL-RWT</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArlKJKyRRjk6i7VrBhLoL4gAAAAACAAAAAAADZgAAwAAAABAAAAAJPy+iiFBuG1AHCBSgjKLuAAAAAASAAACgAAAAEAAAAPZsRYuXMA6txWzEJukChXSIAAAA4mIKj1tiXo1GKA/LzgDRfzPS6//eYnHVmh3x52hAY84W4fd9ywFvlt0uRCUgDWfNUxW8Bu1V/WyRWM4G6k2617ZktCPiJ2s4lrtwmAetdPy3Vg34ogPeqkNBC6LnvWw4XJfpay+l09H5j6Siip8vacRNlCUoz4medMTWhFlHSP7LwSgNxDZp4hQAAACKAHJVnZKeV8cEXGTiLy44jIkfbg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArlKJKyRRjk6i7VrBhLoL4gAAAAACAAAAAAADZgAAwAAAABAAAAA0W+BSyD5L3ao0nclEtzP/AAAAAASAAACgAAAAEAAAABMQJYtEv3C5nNjEX/9Ia+aIAAAA9wxtjwkJ/j9H42wBeEbcA8pO78hTasLxQ1Lf+rmtgxPDesXh4aM68mula7BRhKJxcLp8uT7PAKPQ9EvgOu8oG90AtKT7rAD6XieOK0P6VDGagbC/yIw99CwpRAc/uLwpMcOQN4T7vcf/hbbRBLi/2ocBndnfnoFU7aceQfNk8xeO1vvCDDFcjxQAAACxIpMbGW9dNq5Fj1af1EZJIDwp8g==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -46,10 +46,10 @@
                 <SSIS:Property SSIS:Name="Name">DimCustomer</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">23</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8F072AE2-9998-4A6A-9090-EAC389E2AF26}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{9396B374-D2B5-4615-BAC7-2ACEB2D6B155}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1302,10 +1302,10 @@
                 <SSIS:Property SSIS:Name="Name">FactOrders</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">19</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">56</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F31F59FF-CED3-42D2-8E8F-3A2192BDB4DD}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1D4901C7-30E3-4308-9C63-86441CEC6832}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

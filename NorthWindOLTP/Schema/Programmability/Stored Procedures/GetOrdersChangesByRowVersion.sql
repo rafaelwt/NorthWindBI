@@ -14,9 +14,10 @@ BEGIN
 		o.ShipVia AS ShipperID,
 		CONVERT(INT, CONVERT(VARCHAR, o.OrderDate, 112)) AS TimeKey,
 		od.Quantity,
-		CAST(od.UnitPrice * od.Quantity * (1 - od.Discount) AS MONEY) AS Revenue,
-		NULL AS Cost,
-		NULL AS Profit
+		od.UnitPrice,
+		od.Discount,
+		CAST(od.UnitPrice * od.Quantity * (1 - od.Discount) AS MONEY) AS Revenue
+
 	FROM [dbo].[Orders] o
 	INNER JOIN [dbo].[OrderDetails] od ON o.OrderID = od.OrderID
 	WHERE ((CAST(o.[RowVer] AS BIGINT) > @startRowVersion) AND (CAST(o.[RowVer] AS BIGINT) <= @endRowVersion))

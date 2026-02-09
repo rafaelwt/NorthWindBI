@@ -1,0 +1,765 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1700,
+  "model": {
+    "culture": "es-ES",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/LTSDABASTO;NorthWindDW",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "LTSDABASTO",
+            "database": "NorthWindDW"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "kind": "SQL",
+          "path": "ltsdabasto;NorthWindDW",
+          "Username": "sa",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Customer",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "CustomerID"
+          },
+          {
+            "name": "CustomerName",
+            "dataType": "string",
+            "sourceColumn": "CustomerName"
+          },
+          {
+            "name": "ContactName",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "ContactName"
+          },
+          {
+            "name": "ContactTitle",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "ContactTitle"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Region"
+          },
+          {
+            "name": "PostalCode",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "PostalCode"
+          },
+          {
+            "name": "Country",
+            "dataType": "string",
+            "sourceColumn": "Country"
+          },
+          {
+            "name": "Phone",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Phone"
+          },
+          {
+            "name": "Fax",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Fax"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/LTSDABASTO;NorthWindDW\",",
+                "    dbo_DimCustomer = Source{[Schema=\"dbo\",Item=\"DimCustomer\"]}[Data]",
+                "in",
+                "    dbo_DimCustomer"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Date",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "FullDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "FullDate"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Quarter"
+          },
+          {
+            "name": "Month",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Month"
+          },
+          {
+            "name": "Day",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Day"
+          },
+          {
+            "name": "DayNumberOfWeek",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "DayNumberOfWeek"
+          },
+          {
+            "name": "DayNameOfWeek",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "DayNameOfWeek"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName"
+          },
+          {
+            "name": "WeekNumberOfYear",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "WeekNumberOfYear"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/LTSDABASTO;NorthWindDW\",",
+                "    dbo_DimDate = Source{[Schema=\"dbo\",Item=\"DimDate\"]}[Data]",
+                "in",
+                "    dbo_DimDate"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Product",
+        "columns": [
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductKey"
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName"
+          },
+          {
+            "name": "ProductLine",
+            "dataType": "string",
+            "sourceColumn": "ProductLine"
+          },
+          {
+            "name": "SupplierName",
+            "dataType": "string",
+            "sourceColumn": "SupplierName"
+          },
+          {
+            "name": "QuantityPerUnit",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "QuantityPerUnit"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "UnitPrice"
+          },
+          {
+            "name": "Discontinued",
+            "dataType": "boolean",
+            "isHidden": true,
+            "sourceColumn": "Discontinued"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/LTSDABASTO;NorthWindDW\",",
+                "    dbo_DimProduct = Source{[Schema=\"dbo\",Item=\"DimProduct\"]}[Data]",
+                "in",
+                "    dbo_DimProduct"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ShippingAgent",
+        "columns": [
+          {
+            "name": "ShippingAgentKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ShippingAgentKey"
+          },
+          {
+            "name": "ShipperID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ShipperID"
+          },
+          {
+            "name": "ShippingAgentName",
+            "dataType": "string",
+            "sourceColumn": "ShippingAgentName"
+          },
+          {
+            "name": "Phone",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Phone"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/LTSDABASTO;NorthWindDW\",",
+                "    dbo_DimShippingAgent = Source{[Schema=\"dbo\",Item=\"DimShippingAgent\"]}[Data]",
+                "in",
+                "    dbo_DimShippingAgent"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Orders",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "SalesPersonKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SalesPersonKey"
+          },
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductKey"
+          },
+          {
+            "name": "ShippingAgentKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ShippingAgentKey"
+          },
+          {
+            "name": "TimeKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "TimeKey"
+          },
+          {
+            "name": "OrderNo",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "OrderNo"
+          },
+          {
+            "name": "LineItemNo",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "LineItemNo"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Quantity"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "decimal",
+            "isHidden": true,
+            "sourceColumn": "UnitPrice"
+          },
+          {
+            "name": "Discount",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "Discount"
+          },
+          {
+            "name": "Revenue",
+            "dataType": "decimal",
+            "sourceColumn": "Revenue"
+          },
+          {
+            "type": "calculated",
+            "name": "GrossSales",
+            "dataType": "decimal",
+            "isDataTypeInferred": true,
+            "expression": "Orders[Quantity]*Orders[UnitPrice]",
+            "formatString": "#,0.00 \"€\";-#,0.00 \"€\";#,0.00 \"€\"",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"3082\" DisplayName=\"€ Español (España)\" Symbol=\"€\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "TypeDiscount",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "IF(Orders[Discount]>0,\"WithDiscount\",\"WithOutDiscount\")"
+          },
+          {
+            "type": "calculated",
+            "name": "TypePrice",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "IF(Orders[UnitPrice]>100,\"High\",IF(Orders[UnitPrice]<50,\"Low\",\"Medium\"))"
+          },
+          {
+            "type": "calculated",
+            "name": "TypeQuantity",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "IF(Orders[Quantity]>80,\"L\",IF(Orders[Quantity]<40,\"S\",\"M\"))"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/LTSDABASTO;NorthWindDW\",",
+                "    dbo_FactOrders = Source{[Schema=\"dbo\",Item=\"FactOrders\"]}[Data]",
+                "in",
+                "    dbo_FactOrders"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "TotalQuantity",
+            "expression": " SUM(Orders[Quantity])"
+          },
+          {
+            "name": "TotalGrossSales",
+            "expression": " SUM(Orders[GrossSales])"
+          },
+          {
+            "name": "TotalNetSales",
+            "expression": " SUM(Orders[Revenue])"
+          },
+          {
+            "name": "TotalOrders",
+            "expression": " DISTINCTCOUNT(Orders[OrderNo])"
+          },
+          {
+            "name": "TotalSmallNetQuantity",
+            "expression": " CALCULATE(Orders[TotalQuantity],Orders[TypeQuantity]=\"S\")"
+          },
+          {
+            "name": "TotalMediumNetQuantity",
+            "expression": " CALCULATE(Orders[TotalQuantity],Orders[TypeQuantity]=\"M\")"
+          },
+          {
+            "name": "TotalLargeNetQuantity",
+            "expression": " CALCULATE(Orders[TotalQuantity],Orders[TypeQuantity]=\"L\")"
+          },
+          {
+            "name": "TotalWithDiscountOrders",
+            "expression": " CALCULATE(Orders[TotalOrders],Orders[TypeDiscount]=\"WithDiscount\")"
+          },
+          {
+            "name": "TotalWithOutDiscountOrders",
+            "expression": " CALCULATE(Orders[TotalOrders],Orders[TypeDiscount]=\"WithOutDiscount\")"
+          },
+          {
+            "name": "TotalWithDiscountNetSales",
+            "expression": " CALCULATE(Orders[TotalNetSales],Orders[TypeDiscount]=\"WithDiscount\")"
+          },
+          {
+            "name": "TotalWithOutDiscountNetSales",
+            "expression": " CALCULATE(Orders[TotalNetSales],Orders[TypeDiscount]=\"WithOutDiscount\")"
+          },
+          {
+            "name": "TotalLowTypePriceNetSales",
+            "expression": " CALCULATE(Orders[TotalNetSales],Orders[TypePrice]=\"Low\")"
+          },
+          {
+            "name": "TotalMediumTypePriceNetSales",
+            "expression": " CALCULATE(Orders[TotalNetSales],Orders[TypePrice]=\"Medium\")"
+          },
+          {
+            "name": "TotalHighTypePriceNetSales",
+            "expression": " CALCULATE(Orders[TotalNetSales],Orders[TypePrice]=\"High\")"
+          },
+          {
+            "name": "TotalWithDiscountGrossSales",
+            "expression": " CALCULATE(Orders[TotalGrossSales],Orders[TypeDiscount]=\"WithDiscount\")"
+          },
+          {
+            "name": "TotalWithOutDiscountGrossSales",
+            "expression": " CALCULATE(Orders[TotalGrossSales],Orders[TypeDiscount]=\"WithOutDiscount\")"
+          }
+        ]
+      },
+      {
+        "name": "SalesPerson",
+        "columns": [
+          {
+            "name": "SalesPersonKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SalesPersonKey"
+          },
+          {
+            "name": "EmployeeID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "EmployeeID"
+          },
+          {
+            "name": "SalesPersonName",
+            "dataType": "string",
+            "sourceColumn": "SalesPersonName"
+          },
+          {
+            "name": "Title",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Title"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "Region"
+          },
+          {
+            "name": "Country",
+            "dataType": "string",
+            "sourceColumn": "Country"
+          },
+          {
+            "name": "HireDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "HireDate"
+          },
+          {
+            "name": "ReportsTo",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ReportsTo"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/LTSDABASTO;NorthWindDW\",",
+                "    dbo_DimSalesPerson = Source{[Schema=\"dbo\",Item=\"DimSalesPerson\"]}[Data]",
+                "in",
+                "    dbo_DimSalesPerson"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "34a60e70-a77e-452f-ba60-65aa06f0fa53",
+        "fromTable": "Orders",
+        "fromColumn": "CustomerKey",
+        "toTable": "Customer",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "e39f9b25-e83e-4f25-8caf-d0ebfd03fed7",
+        "fromTable": "Orders",
+        "fromColumn": "TimeKey",
+        "toTable": "Date",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "05009ecb-e27f-4138-97a3-b35e459d108f",
+        "fromTable": "Orders",
+        "fromColumn": "ProductKey",
+        "toTable": "Product",
+        "toColumn": "ProductKey"
+      },
+      {
+        "name": "ca1d6dc9-92f9-40f9-a47a-75660e1c7c65",
+        "fromTable": "Orders",
+        "fromColumn": "ShippingAgentKey",
+        "toTable": "ShippingAgent",
+        "toColumn": "ShippingAgentKey"
+      },
+      {
+        "name": "f683e9af-4f3d-4a53-9e58-da7b1ee8b295",
+        "fromTable": "Orders",
+        "fromColumn": "SalesPersonKey",
+        "toTable": "SalesPerson",
+        "toColumn": "SalesPersonKey"
+      }
+    ],
+    "perspectives": [
+      {
+        "name": "RRHH",
+        "tables": [
+          {
+            "name": "Date",
+            "columns": [
+              {
+                "name": "Month"
+              },
+              {
+                "name": "Year"
+              }
+            ]
+          },
+          {
+            "name": "Orders",
+            "measures": [
+              {
+                "name": "TotalLargeNetQuantity"
+              },
+              {
+                "name": "TotalMediumNetQuantity"
+              },
+              {
+                "name": "TotalOrders"
+              },
+              {
+                "name": "TotalQuantity"
+              },
+              {
+                "name": "TotalSmallNetQuantity"
+              }
+            ]
+          },
+          {
+            "name": "SalesPerson",
+            "columns": [
+              {
+                "name": "SalesPersonName"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Sales",
+        "tables": [
+          {
+            "name": "Customer",
+            "columns": [
+              {
+                "name": "City"
+              },
+              {
+                "name": "Country"
+              },
+              {
+                "name": "CustomerName"
+              }
+            ]
+          },
+          {
+            "name": "Date",
+            "columns": [
+              {
+                "name": "Month"
+              },
+              {
+                "name": "Year"
+              }
+            ]
+          },
+          {
+            "name": "Orders",
+            "columns": [
+              {
+                "name": "Discount"
+              },
+              {
+                "name": "OrderNo"
+              },
+              {
+                "name": "Quantity"
+              },
+              {
+                "name": "Revenue"
+              },
+              {
+                "name": "TypeDiscount"
+              },
+              {
+                "name": "TypePrice"
+              },
+              {
+                "name": "TypeQuantity"
+              },
+              {
+                "name": "UnitPrice"
+              }
+            ],
+            "measures": [
+              {
+                "name": "TotalGrossSales"
+              },
+              {
+                "name": "TotalNetSales"
+              },
+              {
+                "name": "TotalOrders"
+              },
+              {
+                "name": "TotalQuantity"
+              }
+            ]
+          },
+          {
+            "name": "Product",
+            "columns": [
+              {
+                "name": "ProductName"
+              },
+              {
+                "name": "QuantityPerUnit"
+              },
+              {
+                "name": "SupplierName"
+              },
+              {
+                "name": "UnitPrice"
+              }
+            ]
+          },
+          {
+            "name": "SalesPerson",
+            "columns": [
+              {
+                "name": "City"
+              },
+              {
+                "name": "Country"
+              },
+              {
+                "name": "SalesPersonName"
+              }
+            ]
+          },
+          {
+            "name": "ShippingAgent",
+            "columns": [
+              {
+                "name": "ShippingAgentName"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "800"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
